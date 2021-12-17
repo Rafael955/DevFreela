@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Repositorios
 {
-    public class IRepositorioProjeto
+    public class IProjetoRepository
     {
     }
 }

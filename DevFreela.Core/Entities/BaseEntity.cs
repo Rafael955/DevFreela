@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Core.Entidades
+namespace DevFreela.Core.Entities
 {
     public abstract class BaseEntity
     {

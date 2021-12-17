@@ -1,11 +1,11 @@
 ﻿namespace DevFreela.Core.Enums
 {
-    public enum SituacaoProjetoEnum
+    public enum ProjectStatusEnum
     {
-        Criado = 0,
-        EmProgresso = 1,
-        Suspenso = 2,
-        Cancelado = 3,
-        Concluido = 4
+        Created = 0,
+        InProgress = 1,
+        Suspended = 2,
+        Cancelled = 3,
+        Concluded = 4
     }
 }

@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Persistencia\" />
-    <Folder Include="Servicos\" />
+    <Folder Include="Persistencia\Repositorios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevFreela.Core\DevFreela.Core.csproj" />
   </ItemGroup>
 
 </Project>
