@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Infrastructure.ServicosNuvem.Interfaces
+namespace DevFreela.Infrastructure.CloudServices.Interface
 {
     public interface IFileStorageService
     {

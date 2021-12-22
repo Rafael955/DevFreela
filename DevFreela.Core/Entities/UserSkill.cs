@@ -11,5 +11,7 @@
         public int UserId { get; private set; }
 
         public int SkillId { get; private set; }
+
+        public Skill Skill { get; private set; }
     }
 }

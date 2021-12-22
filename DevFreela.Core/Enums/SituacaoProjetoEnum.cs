@@ -6,6 +6,6 @@
         InProgress = 1,
         Suspended = 2,
         Cancelled = 3,
-        Concluded = 4
+        Finished = 4
     }
 }

@@ -1,4 +1,5 @@
-﻿using DevFreela.Application.Services.Interfaces;
+﻿using DevFreela.Application.InputModels;
+using DevFreela.Application.Services.Interfaces;
 using DevFreela.Application.ViewModels;
 using DevFreela.Core.Entities;
 using DevFreela.Infrastructure.Persistencia;
@@ -44,14 +45,18 @@ namespace DevFreela.Application.Services.Implementations
 
         public void Finish(int id)
         {
-            throw new NotImplementedException();
+            var project = _context.Projects.SingleOrDefault(x => x.Id == id);
+
+            project.Finish();
         }
 
         public List<ProjectViewModel> GetAll(string query)
         {
             var projects = _context.Projects;
 
-            var projectsViewModel = projects.Select(p => new ProjectViewModel(p.Title, p.CreatedAt)).ToList();
+            var projectsViewModel = projects
+                .Select(p => new ProjectViewModel(p.Id, p.Title, p.CreatedAt))
+                .ToList();
 
             return projectsViewModel;
         }
@@ -75,12 +80,16 @@ namespace DevFreela.Application.Services.Implementations
 
         public void Start(int id)
         {
-            throw new NotImplementedException();
+            var project = _context.Projects.SingleOrDefault(x => x.Id == id);
+
+            project.Start();
         }
 
         public void Update(UpdateProjectInputModel updateModel)
         {
-            throw new NotImplementedException();
+            var project = _context.Projects.SingleOrDefault(x => x.Id == updateModel.Id);
+
+            project.Update(updateModel.Title, updateModel.Description, updateModel.TotalCost);
         }
     }
 }
