@@ -2,7 +2,8 @@
 using DevFreela.Application.Services.Interfaces;
 using DevFreela.Application.ViewModels;
 using DevFreela.Core.Entities;
-using DevFreela.Infrastructure.Persistencia;
+using DevFreela.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace DevFreela.Application.Services.Implementations
 
             _context.Projects.Add(project);
 
+            _context.SaveChanges();
+
             return project.Id;
         }
 
@@ -34,6 +37,8 @@ namespace DevFreela.Application.Services.Implementations
             var comment = new ProjectComment(inputModel.Content, inputModel.ProjectId, inputModel.UserId);
 
             _context.ProjectComments.Add(comment);
+
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -41,6 +46,8 @@ namespace DevFreela.Application.Services.Implementations
             var project = _context.Projects.SingleOrDefault(x => x.Id == id);
 
             project.Cancel();
+
+            _context.SaveChanges();
         }
 
         public void Finish(int id)
@@ -48,6 +55,8 @@ namespace DevFreela.Application.Services.Implementations
             var project = _context.Projects.SingleOrDefault(x => x.Id == id);
 
             project.Finish();
+
+            _context.SaveChanges();
         }
 
         public List<ProjectViewModel> GetAll(string query)
@@ -63,7 +72,10 @@ namespace DevFreela.Application.Services.Implementations
 
         public ProjectDetailsViewModel GetById(int id)
         {
-            var project = _context.Projects.SingleOrDefault(x => x.Id == id);
+            var project = _context.Projects
+                .Include(p => p.Client)
+                .Include(p => p.Freelancer)
+                .SingleOrDefault(x => x.Id == id);
 
             var projectDetailsViewModel = new ProjectDetailsViewModel
                 (
@@ -72,7 +84,9 @@ namespace DevFreela.Application.Services.Implementations
                     project.Description,
                     project.TotalCost,
                     project.StartedAt,
-                    project.FinishedAt
+                    project.FinishedAt,
+                    project.Client.FullName,
+                    project.Freelancer.FullName
                 );
 
             return projectDetailsViewModel;
@@ -83,6 +97,8 @@ namespace DevFreela.Application.Services.Implementations
             var project = _context.Projects.SingleOrDefault(x => x.Id == id);
 
             project.Start();
+
+            _context.SaveChanges();
         }
 
         public void Update(UpdateProjectInputModel updateModel)
@@ -90,6 +106,8 @@ namespace DevFreela.Application.Services.Implementations
             var project = _context.Projects.SingleOrDefault(x => x.Id == updateModel.Id);
 
             project.Update(updateModel.Title, updateModel.Description, updateModel.TotalCost);
+
+            _context.SaveChanges();
         }
     }
 }
