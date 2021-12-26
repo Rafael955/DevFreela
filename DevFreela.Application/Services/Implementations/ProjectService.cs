@@ -1,9 +1,12 @@
-﻿using DevFreela.Application.InputModels;
+﻿using Dapper;
+using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using DevFreela.Application.ViewModels;
 using DevFreela.Core.Entities;
 using DevFreela.Infrastructure.Persistence;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +18,12 @@ namespace DevFreela.Application.Services.Implementations
     public class ProjectService : IProjectService
     {
         private readonly DevFreelaDbContext _context;
+        private readonly string _connectionString;
 
-        public ProjectService(DevFreelaDbContext context)
+        public ProjectService(DevFreelaDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("DevFreelaCs");
         }
 
         public int Create(NewProjectInputModel inputModel)
@@ -61,13 +66,21 @@ namespace DevFreela.Application.Services.Implementations
 
         public List<ProjectViewModel> GetAll(string query)
         {
-            var projects = _context.Projects;
 
-            var projectsViewModel = projects
-                .Select(p => new ProjectViewModel(p.Id, p.Title, p.CreatedAt))
-                .ToList();
+            using var sqlConnection = new SqlConnection(_connectionString);
+            sqlConnection.Open();
 
-            return projectsViewModel;
+            var script = "SELECT Id, Title, CreatedAt FROM Projects";
+
+            return sqlConnection.Query<ProjectViewModel>(script).ToList();
+
+            //var projects = _context.Projects;
+
+            //var projectsViewModel = projects
+            //    .Select(p => new ProjectViewModel(p.Id, p.Title, p.CreatedAt))
+            //    .ToList();
+
+            //return projectsViewModel;
         }
 
         public ProjectDetailsViewModel GetById(int id)
@@ -98,7 +111,14 @@ namespace DevFreela.Application.Services.Implementations
 
             project.Start();
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
+
+            using var sqlConnection = new SqlConnection(_connectionString);
+            sqlConnection.Open();
+
+            var script = $"UPDATE Projects SET Status = @status, StartedAt = @startedAt WHERE Id = @id";
+
+            sqlConnection.Execute(script, new { status = project.Status, startedAt = project.StartedAt, id = project.Id });
         }
 
         public void Update(UpdateProjectInputModel updateModel)
