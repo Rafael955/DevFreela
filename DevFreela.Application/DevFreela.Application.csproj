@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\Implementations\SkillService.cs" />
+    <Compile Remove="Services\Interfaces\ISkillService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
@@ -14,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\GetAllSkills\" />
+    <Folder Include="Queries\GetAllProjects\" />
+    <Folder Include="Queries\GetProjectById\" />
+    <Folder Include="Queries\GetUser\" />
   </ItemGroup>
 
 </Project>

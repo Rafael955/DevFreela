@@ -1,7 +1,10 @@
 ﻿using DevFreela.API.Models;
+using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DevFreela.API.Controllers
 {
@@ -10,10 +13,12 @@ namespace DevFreela.API.Controllers
     {
 
         private readonly IProjectService _projectService;
+        private readonly IMediator _mediator;
 
-        public ProjectsController(IProjectService projectService)
+        public ProjectsController(IProjectService projectService, IMediator mediator)
         {
             _projectService = projectService;
+            _mediator = mediator;
         }
 
         //ex: api/projects?query=net core
@@ -36,49 +41,54 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] NewProjectInputModel inputModel)
+        public async Task<IActionResult> Post([FromBody] CreateProjectCommand command)
         {
-            if (inputModel.Title.Length > 50)
+            if (command.Title.Length > 50)
                 return BadRequest();
 
-            var id = _projectService.Create(inputModel);
-
+            //var id = _projectService.Create(inputModel);
+            var id = await _mediator.Send(command);
             // cadastro o objeto
-            return CreatedAtAction(nameof(GetById), new { id = id }, inputModel);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
         //ex: api/projects/2
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateProjectInputModel inputModel)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateProjectCommand command)
         {
-            if (inputModel.Description.Length > 200)
+            if (command.Description.Length > 200)
                 return BadRequest();
 
             // atualizo o objeto
-            _projectService.Update(inputModel);
+            //_projectService.Update(inputModel);
+            await _mediator.Send(command);
 
             return NoContent();
         }
 
         //ex: api/projects/3 DELETE
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             // Buscar, se não existir, retorna NotFound
             //var project = _projectService.GetById(id);
 
             //if (project == null) return NotFound();
             // Remover
-            _projectService.Delete(id);
+            var command = new DeleteProjectCommand(id);
+
+            await _mediator.Send(command);
+
+            //_projectService.Delete(id);
 
             return NoContent();
         }
 
         //ex: api/projects/1/comments POST
         [HttpPost("{id}/comments")]
-        public IActionResult PostComment([FromBody] CreateCommentInputModel inputModel)
+        public async Task<IActionResult> PostComment([FromBody] CreateCommentCommand command)
         {
-            _projectService.CreateComment(inputModel);
+            await _mediator.Send(command);
 
             return NoContent();
         }
