@@ -10,9 +10,9 @@ namespace DevFreela.Application.Services.Interfaces
 {
     public interface IProjectService
     {
-        List<ProjectViewModel> GetAll(string query);
+        //List<ProjectViewModel> GetAll(string query);
         
-        ProjectDetailsViewModel GetById(int id);
+        //ProjectDetailsViewModel GetById(int id);
 
         //int Create(NewProjectInputModel inputModel);
 
@@ -22,8 +22,8 @@ namespace DevFreela.Application.Services.Interfaces
 
         //void CreateComment(CreateCommentInputModel imputModel);
 
-        void Start(int id);
+       //void Start(int id);
 
-        void Finish(int id);
+        //void Finish(int id);
     }
 }

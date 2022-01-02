@@ -1,6 +1,10 @@
 ﻿using DevFreela.API.Models;
 using DevFreela.Application.Commands.CreateProject;
+using DevFreela.Application.Commands.FinishProject;
+using DevFreela.Application.Commands.StartProject;
 using DevFreela.Application.InputModels;
+using DevFreela.Application.Queries.GetAllProjects;
+using DevFreela.Application.Queries.GetProjectById;
 using DevFreela.Application.Services.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,21 +27,28 @@ namespace DevFreela.API.Controllers
 
         //ex: api/projects?query=net core
         [HttpGet]
-        public IActionResult Get(string query)
+        public async Task<IActionResult> Get(string query)
         {
+            var _query = new GetAllProjectsQuery(query);
             // listar todos os objetos
-            var projects = _projectService.GetAll(query);
+            var projects = await _mediator.Send(_query);
 
             return Ok(projects);
         }
 
         //ex: api/projects/1
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             // return NotFound();
             // obter um objeto pelo id
-            return Ok();
+            var project = new GetProjectByIdQuery(id);
+
+            var result = await _mediator.Send(project);
+
+            if(result == null) return NotFound();
+
+            return Ok(result);
         }
 
         [HttpPost]
@@ -95,18 +106,26 @@ namespace DevFreela.API.Controllers
 
         //ex: api/projects/start
         [HttpPut("{id}/start")]
-        public IActionResult Start(int id)
+        public async Task<IActionResult> Start(int id)
         {
-            _projectService.Start(id);
+            var project = new StartProjectCommand(id);
+
+            await _mediator.Send(project);
+
+            //_projectService.Start(id);
 
             return NoContent();
         }
 
         //ex: api/projects/finish
         [HttpPut("{id}/finish")]
-        public IActionResult Finish(int id)
+        public async Task<IActionResult> Finish(int id)
         {
-            _projectService.Finish(id);
+            var project = new FinishProjectCommand(id);
+
+            await _mediator.Send(project);
+
+            //_projectService.Finish(id);
 
             return NoContent();
         }

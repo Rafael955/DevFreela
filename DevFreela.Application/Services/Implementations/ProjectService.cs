@@ -55,71 +55,71 @@ namespace DevFreela.Application.Services.Implementations
         //    _context.SaveChanges();
         //}
 
-        public void Finish(int id)
-        {
-            var project = _context.Projects.SingleOrDefault(x => x.Id == id);
+        //public void Finish(int id)
+        //{
+        //    var project = _context.Projects.SingleOrDefault(x => x.Id == id);
 
-            project.Finish();
+        //    project.Finish();
 
-            _context.SaveChanges();
-        }
+        //    _context.SaveChanges();
+        //}
 
-        public List<ProjectViewModel> GetAll(string query)
-        {
+        //public List<ProjectViewModel> GetAll(string query)
+        //{
 
-            using var sqlConnection = new SqlConnection(_connectionString);
-            sqlConnection.Open();
+        //    using var sqlConnection = new SqlConnection(_connectionString);
+        //    sqlConnection.Open();
 
-            var script = "SELECT Id, Title, CreatedAt FROM Projects";
+        //    var script = "SELECT Id, Title, CreatedAt FROM Projects";
 
-            return sqlConnection.Query<ProjectViewModel>(script).ToList();
+        //    return sqlConnection.Query<ProjectViewModel>(script).ToList();
 
-            //var projects = _context.Projects;
+        //    //var projects = _context.Projects;
 
-            //var projectsViewModel = projects
-            //    .Select(p => new ProjectViewModel(p.Id, p.Title, p.CreatedAt))
-            //    .ToList();
+        //    //var projectsViewModel = projects
+        //    //    .Select(p => new ProjectViewModel(p.Id, p.Title, p.CreatedAt))
+        //    //    .ToList();
 
-            //return projectsViewModel;
-        }
+        //    //return projectsViewModel;
+        //}
 
-        public ProjectDetailsViewModel GetById(int id)
-        {
-            var project = _context.Projects
-                .Include(p => p.Client)
-                .Include(p => p.Freelancer)
-                .SingleOrDefault(x => x.Id == id);
+        //public ProjectDetailsViewModel GetById(int id)
+        //{
+        //    var project = _context.Projects
+        //        .Include(p => p.Client)
+        //        .Include(p => p.Freelancer)
+        //        .SingleOrDefault(x => x.Id == id);
 
-            var projectDetailsViewModel = new ProjectDetailsViewModel
-                (
-                    project.Id,
-                    project.Title,
-                    project.Description,
-                    project.TotalCost,
-                    project.StartedAt,
-                    project.FinishedAt,
-                    project.Client.FullName,
-                    project.Freelancer.FullName
-                );
+        //    var projectDetailsViewModel = new ProjectDetailsViewModel
+        //        (
+        //            project.Id,
+        //            project.Title,
+        //            project.Description,
+        //            project.TotalCost,
+        //            project.StartedAt,
+        //            project.FinishedAt,
+        //            project.Client.FullName,
+        //            project.Freelancer.FullName
+        //        );
 
-            return projectDetailsViewModel;
-        }
+        //    return projectDetailsViewModel;
+        //}
 
-        public void Start(int id)
-        {
-            var project = _context.Projects.SingleOrDefault(x => x.Id == id);
+        //public void Start(int id)
+        //{
+        //    var project = _context.Projects.SingleOrDefault(x => x.Id == id);
 
-            project.Start();
+        //    project.Start();
 
-            //_context.SaveChanges();
+        //    //_context.SaveChanges();
 
-            using var sqlConnection = new SqlConnection(_connectionString);
-            sqlConnection.Open();
+        //    using var sqlConnection = new SqlConnection(_connectionString);
+        //    sqlConnection.Open();
 
-            var script = $"UPDATE Projects SET Status = @status, StartedAt = @startedAt WHERE Id = @id";
+        //    var script = $"UPDATE Projects SET Status = @status, StartedAt = @startedAt WHERE Id = @id";
 
-            sqlConnection.Execute(script, new { status = project.Status, startedAt = project.StartedAt, id = project.Id });
-        }
+        //    sqlConnection.Execute(script, new { status = project.Status, startedAt = project.StartedAt, id = project.Id });
+        //}
 
         //public void Update(UpdateProjectInputModel updateModel)
         //{
