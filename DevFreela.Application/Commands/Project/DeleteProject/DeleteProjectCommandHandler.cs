@@ -3,25 +3,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using DevFreela.Infrastructure.Persistence;
+using DevFreela.Core.Repositorios;
 
 namespace DevFreela.Application.Commands.CreateProject
 {
     public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, Unit>
     {
-        private readonly DevFreelaDbContext _context;
+        private readonly IProjectRepository _repository;
 
-        public DeleteProjectCommandHandler(DevFreelaDbContext context)
+        public DeleteProjectCommandHandler(IProjectRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = _context.Projects.SingleOrDefault(x => x.Id == request.Id);
+            var project = await _repository.GetByIdAsync(request.Id);
 
             project.Cancel();
 
-            await _context.SaveChangesAsync();
+            await _repository.SaveChangesAsync();
 
             return Unit.Value;
         }

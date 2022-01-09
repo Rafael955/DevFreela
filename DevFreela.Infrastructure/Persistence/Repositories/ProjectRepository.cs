@@ -39,8 +39,6 @@ namespace DevFreela.Infrastructure.Persistence.Repositories
         public async Task AddAsync(Project project)
         {
             await _context.Projects.AddAsync(project);
-
-            await _context.SaveChangesAsync();
         }
 
         public async Task StartAsync(Project project)
@@ -56,6 +54,11 @@ namespace DevFreela.Infrastructure.Persistence.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task AddCommentAsync(ProjectComment comment)
+        {
+            await _context.ProjectComments.AddAsync(comment);
         }
     }
 }

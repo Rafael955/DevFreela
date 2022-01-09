@@ -22,6 +22,8 @@ namespace DevFreela.Application.Commands.CreateProject
 
             await _repository.AddAsync(project);
 
+            await _repository.SaveChangesAsync();
+
             return project.Id;
         }
     }
