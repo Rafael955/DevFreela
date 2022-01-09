@@ -21,7 +21,6 @@
   <ItemGroup>
     <Folder Include="Commands\User\" />
     <Folder Include="Commands\Skill\" />
-    <Folder Include="Queries\GetUser\" />
   </ItemGroup>
 
 </Project>

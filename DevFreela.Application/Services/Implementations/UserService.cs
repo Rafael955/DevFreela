@@ -27,18 +27,18 @@ namespace DevFreela.Application.Services.Implementations
             return newUser.Id;
         }
 
-        public UserViewModel GetUser(int id)
-        {
-            var user =_context.Users.SingleOrDefault(x => x.Id == id);
+        //public UserViewModel GetUser(int id)
+        //{
+        //    var user =_context.Users.SingleOrDefault(x => x.Id == id);
 
-            if (user == null)
-            {
-                return null;
-            }
+        //    if (user == null)
+        //    {
+        //        return null;
+        //    }
 
-            var userViewModel = new UserViewModel(user.FullName, user.Email);
+        //    var userViewModel = new UserViewModel(user.FullName, user.Email);
 
-            return userViewModel;
-        }
+        //    return userViewModel;
+        //}
     }
 }

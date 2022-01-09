@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using DevFreela.Core.DTOs;
-using DevFreela.Core.Entities;
 using DevFreela.Core.Repositorios;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
