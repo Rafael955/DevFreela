@@ -1,7 +1,5 @@
 using DevFreela.API.Models;
 using DevFreela.Application.Commands.CreateProject;
-using DevFreela.Application.Services.Implementations;
-using DevFreela.Application.Services.Interfaces;
 using DevFreela.Core.Repositorios;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Infrastructure.Persistence.Repositories;
@@ -38,8 +36,8 @@ namespace DevFreela.API
             var connectionString = Configuration.GetConnectionString("DevFreelaCs");
             services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddScoped<IProjectService, ProjectService>();
-            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IProjectService, ProjectService>();
+            //services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ISkillRepository, SkillRepository>();
