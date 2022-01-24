@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using DevFreela.Application.Validators;
+using DevFreela.API.Filters;
 
 namespace DevFreela.API
 {
@@ -48,7 +49,7 @@ namespace DevFreela.API
 
             services.AddMediatR(typeof(CreateProjectCommand));
 
-            services.AddControllers()
+            services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
 
             services.AddSwaggerGen(c =>

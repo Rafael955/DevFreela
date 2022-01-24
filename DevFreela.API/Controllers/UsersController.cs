@@ -32,15 +32,15 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                var messages = ModelState
-                    .SelectMany(x => x.Value.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
+            //if (!ModelState.IsValid)
+            //{
+            //    var messages = ModelState
+            //        .SelectMany(x => x.Value.Errors)
+            //        .Select(e => e.ErrorMessage)
+            //        .ToList();
 
-                return BadRequest(messages);
-            }
+            //    return BadRequest(messages);
+            //}
 
             var id = await _mediator.Send(command);
 
