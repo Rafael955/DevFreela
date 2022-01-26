@@ -10,15 +10,19 @@ namespace DevFreela.Application.Commands
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
         private readonly IUserRepository _repository;
+        private readonly IAuthService _authService;
 
-        public CreateUserCommandHandler(IUserRepository repository)
+        public CreateUserCommandHandler(IUserRepository repository, IAuthService authService)
         {
             _repository = repository;
+            _authService = authService;
         }
 
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new Usuario(request.FullName, request.Email, request.BirthDate, null, null);
+            var passwordHash = _authService.ComputeSha256Hash(request.Password);
+
+            var user = new Usuario(request.FullName, request.Email, request.BirthDate, request.Password, request.Role);
 
             await _repository.CreateUserAsync(user);
 

@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace DevFreela.Application.Validators
 {
-    public class CreateUserCommandValidator : AbstractValidator<LoginUserCommand>
+    public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
         public CreateUserCommandValidator()
         {

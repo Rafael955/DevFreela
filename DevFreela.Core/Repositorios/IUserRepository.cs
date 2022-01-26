@@ -9,6 +9,8 @@ namespace DevFreela.Core.Repositorios
 
         Task CreateUserAsync(User user);
 
+        Task<User> GetUserByEmailAndPasswordAsync(string email, string passwordHash);
+
         Task SaveChangesAsync();
     }
 }
