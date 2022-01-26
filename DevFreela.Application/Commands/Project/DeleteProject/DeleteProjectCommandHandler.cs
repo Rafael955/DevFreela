@@ -5,7 +5,7 @@ using System.Linq;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Core.Repositorios;
 
-namespace DevFreela.Application.Commands.CreateProject
+namespace DevFreela.Application.Commands
 {
     public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, Unit>
     {

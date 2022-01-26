@@ -1,10 +1,10 @@
-﻿using DevFreela.Application.Commands.User.CreateUser;
+﻿using DevFreela.Application.Commands;
 using FluentValidation;
 using System.Text.RegularExpressions;
 
 namespace DevFreela.Application.Validators
 {
-    public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+    public class CreateUserCommandValidator : AbstractValidator<LoginUserCommand>
     {
         public CreateUserCommandValidator()
         {

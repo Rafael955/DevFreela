@@ -3,8 +3,9 @@ using Usuario = DevFreela.Core.Entities.User;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using DevFreela.Core.Services;
 
-namespace DevFreela.Application.Commands.User.CreateUser
+namespace DevFreela.Application.Commands
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
@@ -17,7 +18,7 @@ namespace DevFreela.Application.Commands.User.CreateUser
 
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new Usuario(request.FullName, request.Email, request.BirthDate);
+            var user = new Usuario(request.FullName, request.Email, request.BirthDate, null, null);
 
             await _repository.CreateUserAsync(user);
 

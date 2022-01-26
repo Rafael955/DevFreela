@@ -30,7 +30,7 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
+        public async Task<IActionResult> Post([FromBody] LoginUserCommand command)
         {
             //if (!ModelState.IsValid)
             //{

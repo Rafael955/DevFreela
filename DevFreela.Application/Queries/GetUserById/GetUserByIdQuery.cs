@@ -2,7 +2,7 @@
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 
-namespace DevFreela.Application.Queries.GetUser
+namespace DevFreela.Application.Queries
 {
     public class GetUserByIdQuery : IRequest<UserViewModel>
     {

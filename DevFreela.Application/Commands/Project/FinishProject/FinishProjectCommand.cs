@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DevFreela.Application.Commands.FinishProject
+namespace DevFreela.Application.Commands
 {
     public class FinishProjectCommand : IRequest<Unit>
     {

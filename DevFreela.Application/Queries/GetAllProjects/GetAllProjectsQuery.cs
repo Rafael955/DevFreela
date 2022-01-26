@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DevFreela.Application.Queries.GetAllProjects
+namespace DevFreela.Application.Queries
 {
     public class GetAllProjectsQuery : IRequest<List<ProjectViewModel>>
     {

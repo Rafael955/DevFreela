@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DevFreela.Application.Commands.StartProject
+namespace DevFreela.Application.Commands
 {
     public class StartProjectCommandHandler : IRequestHandler<StartProjectCommand, Unit>
     {

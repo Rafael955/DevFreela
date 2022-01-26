@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DevFreela.Application.Queries.GetProjectById
+namespace DevFreela.Application.Queries
 {
     public class GetProjectByIdQuery : IRequest<ProjectDetailsViewModel>
     {
