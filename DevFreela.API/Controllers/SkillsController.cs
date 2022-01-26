@@ -1,4 +1,4 @@
-﻿using DevFreela.Application.Queries.GetAllSkills;
+﻿using DevFreela.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

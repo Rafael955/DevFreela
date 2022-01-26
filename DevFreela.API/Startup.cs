@@ -1,4 +1,3 @@
-using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Core.Repositorios;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Infrastructure.Persistence.Repositories;
@@ -15,6 +14,7 @@ using DevFreela.Application.Validators;
 using DevFreela.API.Filters;
 using DevFreela.Core.Services;
 using DevFreela.Infrastructure.Auth;
+using DevFreela.Application.Commands;
 
 namespace DevFreela.API
 {

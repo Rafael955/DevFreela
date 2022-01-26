@@ -1,11 +1,8 @@
 ﻿using DevFreela.API.Models;
-using DevFreela.Application.Commands.User.CreateUser;
-using DevFreela.Application.Queries.GetUser;
+using DevFreela.Application.Commands;
+using DevFreela.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevFreela.API.Controllers
@@ -47,8 +44,8 @@ namespace DevFreela.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        [HttpPut("{id}/login")]
-        public IActionResult Login(int id, [FromBody] LoginModel loginModel)
+        [HttpPut("login")]
+        public IActionResult Login([FromBody] LoginModel loginModel)
         {
             return NoContent();
         }

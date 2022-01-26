@@ -1,13 +1,7 @@
-﻿using DevFreela.API.Models;
-using DevFreela.Application.Commands.CreateProject;
-using DevFreela.Application.Commands.FinishProject;
-using DevFreela.Application.Commands.StartProject;
-using DevFreela.Application.InputModels;
-using DevFreela.Application.Queries.GetAllProjects;
-using DevFreela.Application.Queries.GetProjectById;
+﻿using DevFreela.Application.Commands;
+using DevFreela.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevFreela.API.Controllers
