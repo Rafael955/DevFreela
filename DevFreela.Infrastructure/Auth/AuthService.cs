@@ -55,7 +55,7 @@ namespace DevFreela.Infrastructure.Auth
             var claims = new List<Claim>
             {
                 new Claim("userName", email),
-                new Claim(ClaimTypes.Role, role)
+                new Claim("role", role)
             };
 
             var token = new JwtSecurityToken(

@@ -22,7 +22,7 @@ namespace DevFreela.Application.Commands
         {
             var passwordHash = _authService.ComputeSha256Hash(request.Password);
 
-            var user = new Usuario(request.FullName, request.Email, request.BirthDate, request.Password, request.Role);
+            var user = new Usuario(request.FullName, request.Email, request.BirthDate, passwordHash, request.Role);
 
             await _repository.CreateUserAsync(user);
 

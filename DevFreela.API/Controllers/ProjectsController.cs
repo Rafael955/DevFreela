@@ -1,12 +1,14 @@
 ﻿using DevFreela.Application.Commands;
 using DevFreela.Application.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace DevFreela.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class ProjectsController : ControllerBase
     {
 
