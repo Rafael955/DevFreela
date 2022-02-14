@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using DevFreela.Infrastructure.Persistence;
-using DevFreela.Core.Repositorios;
+using DevFreela.Core.Repositories;
 
 namespace DevFreela.Application.Commands
 {

@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using DevFreela.Application.ViewModels;
 using DevFreela.Core.DTOs;
-using DevFreela.Core.Repositorios;
+using DevFreela.Core.Repositories;
 using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;

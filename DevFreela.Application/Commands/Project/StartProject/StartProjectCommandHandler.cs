@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using DevFreela.Core.Repositorios;
+using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.Data.SqlClient;

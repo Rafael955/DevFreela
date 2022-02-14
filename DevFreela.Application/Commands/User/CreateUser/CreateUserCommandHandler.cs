@@ -1,4 +1,4 @@
-﻿using DevFreela.Core.Repositorios;
+﻿using DevFreela.Core.Repositories;
 using Usuario = DevFreela.Core.Entities.User;
 using MediatR;
 using System.Threading;

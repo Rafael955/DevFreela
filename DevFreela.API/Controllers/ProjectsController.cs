@@ -11,7 +11,6 @@ namespace DevFreela.API.Controllers
     [Authorize]
     public class ProjectsController : ControllerBase
     {
-
         private readonly IMediator _mediator;
 
         public ProjectsController(IMediator mediator)

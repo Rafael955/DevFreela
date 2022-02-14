@@ -1,4 +1,4 @@
-﻿using DevFreela.Core.Repositorios;
+﻿using DevFreela.Core.Repositories;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Core.Repositorios
+namespace DevFreela.Core.Repositories
 {
     public interface ISkillRepository
     {

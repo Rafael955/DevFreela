@@ -1,7 +1,7 @@
 ﻿using DevFreela.Core.Entities;
 using System.Threading.Tasks;
 
-namespace DevFreela.Core.Repositorios
+namespace DevFreela.Core.Repositories
 {
     public interface IUserRepository
     {
